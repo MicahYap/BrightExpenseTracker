@@ -23,11 +23,15 @@ function ExpenseHistory() {
           <td></td>
           <td></td>
           <td></td>
+          <td></td>
           <td><FontAwesomeIcon icon={faTrash} /></td>
 
         </tr>
       </tbody>
     </table>
+    <div>
+      pagination here
+    </div>
   </>
  )
 }
