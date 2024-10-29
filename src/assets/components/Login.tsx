@@ -1,4 +1,4 @@
-import {API_URL, user} from '../../constants/constants'
+import {API_URL} from '../../constants/constants'
 import axios from 'axios';
 
 type LoginProps = {
@@ -19,7 +19,8 @@ function Login({email, setEmail, navigate}: LoginProps) {
         }
       })
 
-      const userId = response.data.user.id 
+      const userId = response.data.user.id
+      localStorage.setItem('userId', response.data.user.id)
       navigate(`/homepage/${userId}`)
     }
     catch(error){
