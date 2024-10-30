@@ -13,7 +13,7 @@ function ExpenseHistory() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [refresh, setRefresh] = useState(false);
-  const [month, setMonth] = useState(new Date().getMonth())
+  const [month, setMonth] = useState(new Date().getMonth()+1)
   const [year, setYear] = useState(new Date().getFullYear())
   const [total, setTotal] = useState()
   
@@ -110,7 +110,7 @@ function ExpenseHistory() {
       <label>Month
         <select value={month} onChange={(e) => setMonth(e.target.value)}>
           {[...Array(12)].map((_, i) => (
-            <option key={i} value={i}>
+            <option key={i} value={i+1}>
               {new Date(0, i).toLocaleString('en', { month: 'long' })}
             </option>
           ))}
