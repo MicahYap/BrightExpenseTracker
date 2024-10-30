@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import {API_URL} from '../../constants/constants'
+import MonthYearDisplay from "./MonthYearDisplay";
+import Pagination from "./Pagination";
+import ExpenseTable from "./ExpenseTable";
 
 type ExpHistoryProp = {
   navigate: (path: string) => void;
@@ -48,114 +49,18 @@ function ExpenseHistory({navigate}: ExpHistoryProp) {
     }
   }, [userId, currentPage, refresh, month, year])
 
-  const pageChange = (pageNum) => {
-    setCurrentPage(pageNum);
-  };
-
-  const pagination = () => {
-    const pages = [];
-    
-    if (currentPage > 1) {
-      pages.push(
-        <button
-          key="prev"
-          onClick={() => pageChange(currentPage - 1)}
-        >
-        </button>
-      );
-    }
-
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(
-        <button
-          key={i}
-          onClick={() => pageChange(i)}
-          style={{ fontWeight: i === currentPage ? 'bold' : 'normal' }}
-        >
-          {i}
-        </button>
-      );
-    }
-
-    if (currentPage < totalPages) {
-      pages.push(
-        <button
-          key="next"
-          onClick={() => pageChange(currentPage + 1)}
-        >
-          
-        </button>
-      );
-    }
-  
-    return pages;
-  };
-  
-
-  const handleDelete = async(id: number) => {
-    try{
-      if (!userId) {
-        alert('Session expired. Please log in again.')
-      navigate('/')
-      } else {
-        await axios.delete(`${API_URL}/users/${userId}/expenses/${id}`)
-      }
-    } catch(error){
-      alert('Error deleting expense.')
-    }
-    setRefresh(prev => !prev);
-  }
 
  return (
   <>
-    <div>
-      <label>Month
-        <select value={month} onChange={(e) => setMonth(e.target.value)}>
-          {[...Array(12)].map((_, i) => (
-            <option key={i} value={i+1}>
-              {new Date(0, i).toLocaleString('en', { month: 'long' })}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-          Year:
-          <input
-            type="number"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-          />
-        </label>
-    </div>
+    <MonthYearDisplay month={month} setMonth={setMonth} year={year} setYear={setYear}/>
+
     <div>
       Subtotal: Php {total}
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Item</th>
-          <th>Description</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-          {expenseHistory.map(expense => (
-            <tr key={expense.id}>
-              <td>{expense.date}</td>
-              <td>{expense.category_name}</td>
-              <td>{expense.item}</td>
-              <td>{expense.description}</td>
-              <td>Php {expense.amount}</td>
-              <td ><button onClick={()=>handleDelete(expense.id)}><FontAwesomeIcon icon={faTrash} /></button></td>
-            </tr>
-          ))}
-      </tbody>
-    </table>
+    <ExpenseTable expenseHistory={expenseHistory} userId={userId} navigate={navigate} setRefresh={setRefresh} />
     <div>
-      {pagination()}
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}/>
     </div>
   </>
  )
