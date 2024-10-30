@@ -12,6 +12,7 @@ function EmailInput ({email, setEmail}: Props) {
         value = {email}
         onChange = {(e) => setEmail(e.target.value)}
         className='w-44'
+        placeholder="example@email.com"
       >
       </input>
     </>
