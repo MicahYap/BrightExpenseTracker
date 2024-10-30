@@ -94,7 +94,7 @@ function ExpenseForm ({userId, category, setCategory, categories, item, setItem,
 
         <label>Amount: </label>
         <input
-          type='text'
+          type='number'
           value={amount}
           onChange={(e)=> setAmount(e.target.value)}
         >
