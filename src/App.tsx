@@ -13,7 +13,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path = "/" element={<AccessPage email={email} setEmail={setEmail}/>}> </Route>
+          <Route path = "/" element={<AccessPage/>}> </Route>
           <Route path = "/homepage/:userId" element ={<Homepage />}></Route>
           <Route path = "/newExpense" element = {<NewExpense />}></Route>
         </Routes>
