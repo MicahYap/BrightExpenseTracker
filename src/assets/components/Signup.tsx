@@ -1,13 +1,13 @@
+import { useState } from "react";
 import axios from 'axios';
-import {API_URL, user} from '../../constants/constants'
+import {API_URL} from '../../constants/constants'
 
 type SignupProps = {
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
   navigate: (path: string) => void;
 };
 
-function Signup({email, setEmail, navigate}: SignupProps) {
+function Signup({navigate}: SignupProps) {
+  const [email, setEmail] =  useState('')
 
   const handleSignup = async(e) =>{
     e.preventDefault()
@@ -17,16 +17,13 @@ function Signup({email, setEmail, navigate}: SignupProps) {
           email: email
         }
       })
-      const userId = response.data.status.data.user.id 
-      navigate(`/homepage/${userId}`)
+      const userId = response.data.user.id; 
+      navigate(`/homepage/${userId}`);
     } catch (error) {
       alert('Signup Error')
     }
     
   }
-
-
-
 
  return (
   <div>

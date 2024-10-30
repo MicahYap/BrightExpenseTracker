@@ -1,14 +1,13 @@
-import {API_URL} from '../../constants/constants'
+import { useState } from "react";
+import {API_URL,} from '../../constants/constants'
 import axios from 'axios';
 
 type LoginProps = {
-  email: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
   navigate: (path: string) => void;
 };
 
-function Login({email, setEmail, navigate}: LoginProps) {
-  
+function Login({navigate}: LoginProps) {
+  const [email, setEmail] =  useState('')
 
   const handleLogIn = async(e) => {
     e.preventDefault();
