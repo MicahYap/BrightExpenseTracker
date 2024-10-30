@@ -30,7 +30,7 @@ function Homepage() {
       >Add New Expense</button>
     </div>
     <div>
-      <ExpenseHistory />
+      <ExpenseHistory navigate={navigate}/>
     </div>
   </div>
  )

@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from "axios";
 import {API_URL} from '../../constants/constants'
-import { useNavigate } from 'react-router-dom'
 
-function ExpenseHistory() {
+type ExpHistoryProp = {
+  navigate: (path: string) => void;
+};
+
+function ExpenseHistory({navigate}: ExpHistoryProp) {
 
   const userId = localStorage.getItem('userId')
-  const navigate = useNavigate()
   const [expenseHistory, setExpenseHistory] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -90,7 +92,7 @@ function ExpenseHistory() {
   };
   
 
-  const handleDelete = async(id) => {
+  const handleDelete = async(id: number) => {
     try{
       if (!userId) {
         alert('Session expired. Please log in again.')
