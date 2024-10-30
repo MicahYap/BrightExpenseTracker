@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import ExpenseHistory from "./ExpenseHistory";
 import {API_URL} from '../../constants/constants'
