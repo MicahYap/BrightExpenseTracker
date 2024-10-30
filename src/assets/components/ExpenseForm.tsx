@@ -50,15 +50,17 @@ function ExpenseForm ({userId, category, setCategory, categories, item, setItem,
   }
 
   return(
-    <>
-      <form onSubmit={onSubmit}>
+    <div>
+      <b className='text-pink-100 text-2xl'>Create New Expense</b>
+      <form onSubmit={onSubmit} className="flex flex-col space-y-4 mt-6">
 
         <label>Date:</label>
         <input
             type='date'
             value={logDate}
             onChange={(e) => setLogDate(e.target.value)}
-          />
+        />
+
         <label>Category: </label>
         <select 
           id = "category"
@@ -98,10 +100,15 @@ function ExpenseForm ({userId, category, setCategory, categories, item, setItem,
         >
         </input>
 
-        <button type='submit'>Save</button>
+        <button 
+          type='submit'
+          className="px-4 py-2 bg-pink-500 text-white font-semibold rounded shadow hover:bg-pink-400 transition-colors duration-200 w-40 flex justify-center self-center"
+        >
+          Save
+        </button>
 
       </form>
-    </>
+    </div>
   )
 }
 

@@ -10,48 +10,22 @@ function Pagination ({currentPage, setCurrentPage, totalPages}: PaginationProps)
     setCurrentPage(pageNum);
   };
 
-  const pagination = () => {
-    const pages = [];
-    
-    if (currentPage > 1) {
-      pages.push(
-        <button
-          key="prev"
-          onClick={() => pageChange(currentPage - 1)}
-        >
-        </button>
-      );
-    }
-
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(
-        <button
-          key={i}
-          onClick={() => pageChange(i)}
-          style={{ fontWeight: i === currentPage ? 'bold' : 'normal' }}
-        >
-          {i}
-        </button>
-      );
-    }
-
-    if (currentPage < totalPages) {
-      pages.push(
-        <button
-          key="next"
-          onClick={() => pageChange(currentPage + 1)}
-        >
-          
-        </button>
-      );
-    }
-  
-    return pages;
-  };
   return(
-    <>
-      {pagination()}
-    </>
+    <div className='space-x-2'>
+      {[...Array(totalPages)].map((_, i) => (
+        <button
+          key={i + 1}
+          onClick={() => pageChange(i + 1)}
+          className={`px-2 py-1 rounded ${
+            i + 1 === currentPage
+              ? 'bg-pink-500 text-white font-bold'
+              : 'bg-pink-100 hover:bg-gray-300'
+          }`}
+        >
+          {i + 1}
+        </button>
+      ))}
+    </div>
   )
 }
 

@@ -4,11 +4,8 @@ import axios from 'axios';
 import {API_URL} from '../../constants/constants'
 import EmailInput from "./EmailInput";
 
-type SignupProps = {
-  navigate: (path: string) => void;
-};
 
-function Signup({navigate}: SignupProps) {
+function Signup() {
   const [email, setEmail] =  useState('')
 
   const handleSignup = async(e: FormEvent<HTMLFormElement>) =>{
@@ -19,8 +16,8 @@ function Signup({navigate}: SignupProps) {
           email: email
         }
       })
-      const userId = response.data.user.id; 
-      navigate(`/homepage/${userId}`);
+      alert("You're now registered! Please log in")
+      setEmail('')
     } catch (error) {
       alert('Signup Error')
     }
@@ -29,12 +26,20 @@ function Signup({navigate}: SignupProps) {
 
  return (
   <div>
-    <div>Don't have an account yet? Register with your email!</div>
-    <form onSubmit={handleSignup}>
-      <EmailInput email={email} setEmail={setEmail}/>
-      <button> Sign Up </button>
-    </form>
+    <div>
+      <b className='text-lg'>Don't have an account yet?</b>
+      <br></br>
+      <b> Register with your email!</b>
+      <form onSubmit={handleSignup} className='flex flex-col space-y-2'>
+        <EmailInput email={email} setEmail={setEmail}/>
+        <button 
+          type='submit'
+          className='w-44 bg-pink-500 text-pink-100 hover:bg-pink-400 rounded-lg py-2 transition duration-200'
+        > Sign Up </button>
+      </form>
+      </div>
   </div>
+  
  )
 }
 export default Signup

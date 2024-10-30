@@ -34,11 +34,11 @@ function NewExpense() {
   }, [userId, navigate]);
 
   return(
-    <>
+    <div className='bg-gradient-to-b from-pink-400 to-pink-300 min-h-screen flex justify-center items-center'>
       <div>
         <ExpenseForm userId={userId} category={category} setCategory={setCategory} categories={categories} item={item} setItem={setItem} description={description} setDescription={setDescription} amount={amount} setAmount={setAmount} logDate={logDate} setLogDate={setLogDate} navigate={navigate} />
       </div>
-    </>
+    </div>
   )
 }
 

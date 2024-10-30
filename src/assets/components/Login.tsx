@@ -30,12 +30,18 @@ function Login({navigate}: LoginProps) {
   }
 
  return (
-  <div>
-    <div>Login Here:</div>
-    <form onSubmit={handleLogIn}>
-      <EmailInput email={email} setEmail={setEmail}/>
-      <button> Log In </button>
-    </form>
+  <div className='flex'>
+    <div>
+      <b className='text-lg'>Login Here:</b>
+      <form onSubmit={handleLogIn} className='flex flex-col space-y-2 mb-12'>
+        <EmailInput email={email} setEmail={setEmail}/>
+        <button 
+          type='submit'
+          className='w-44 bg-pink-500 text-pink-100 hover:bg-pink-400 rounded-lg py-2 transition duration-200'
+        > Log In </button>
+      </form>
+    </div>
+    
   </div>
  )
 }

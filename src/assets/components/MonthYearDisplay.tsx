@@ -10,24 +10,24 @@ function MonthYearDisplay ({month, setMonth, year, setYear}: MonthYearDisplayPro
   return(
     <>
       <div>
-      <label>Month
-        <select value={month} onChange={(e) => setMonth(Number(e.target.value))}>
-          {[...Array(12)].map((_, i) => (
-            <option key={i} value={i+1}>
-              {new Date(0, i).toLocaleString('en', { month: 'long' })}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>
-          Year:
+        <label className='pr-4'> 
+          <select value={month} onChange={(e) => setMonth(Number(e.target.value))} className='w-26 p-1 text-m'>
+            {[...Array(12)].map((_, i) => (
+              <option key={i} value={i+1}>
+                {new Date(0, i).toLocaleString('en', { month: 'long' })}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
           <input
-            type="number"
+            type='number'
             value={year}
             onChange={(e) => setYear(Number(e.target.value))}
+            className='w-16 p-1 text-m'
           />
         </label>
-    </div>
+      </div>
     </>
   )
 }

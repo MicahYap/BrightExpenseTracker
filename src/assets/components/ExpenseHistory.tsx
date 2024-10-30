@@ -42,7 +42,7 @@ function ExpenseHistory({navigate}: ExpHistoryProp) {
           setTotalPages(response.data.total_pages)
           setTotal(response.data.total_expense_per_month)
         }catch (error) {
-          alert("Error fetching expense history.")
+          alert('Error fetching expense history.')
         }
       }
       getExpense()
@@ -51,18 +51,19 @@ function ExpenseHistory({navigate}: ExpHistoryProp) {
 
 
  return (
-  <>
-    <MonthYearDisplay month={month} setMonth={setMonth} year={year} setYear={setYear}/>
-
-    <div>
-      Subtotal: Php {total}
+  <div className='flex justify-center align-center flex-col'>
+    <div className="text-center">
+      <MonthYearDisplay month={month} setMonth={setMonth} year={year} setYear={setYear}/>
+      <div className='mt-4 mb-4'>
+        <b>Subtotal: Php {total}</b>
+      </div>
     </div>
-
-    <ExpenseTable expenseHistory={expenseHistory} userId={userId} navigate={navigate} setRefresh={setRefresh} />
-    <div>
+    
+    <ExpenseTable expenseHistory={expenseHistory} userId={userId} navigate={navigate} setRefresh={setRefresh}/>
+    <div className='flex justify-center align-center mt-6'>
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}/>
     </div>
-  </>
+  </div>
  )
 }
 

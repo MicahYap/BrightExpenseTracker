@@ -10,7 +10,9 @@ function EmailInput ({email, setEmail}: Props) {
       <input 
         type='text' 
         value = {email}
-        onChange = {(e) => setEmail(e.target.value)}>
+        onChange = {(e) => setEmail(e.target.value)}
+        className='w-44'
+      >
       </input>
     </>
   )
